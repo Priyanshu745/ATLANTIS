@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: client
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./client/build
+    envVars:
+      - key: REACT_APP_API_URL
+        sync: false
+  - type: web
+    name: server
+    env: node
+    buildCommand: npm install
+    startCommand: node app.js
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: Braintree_Merchant_ID
+        sync: false
+      - key: Braintree_Public_Key
+        sync: false
+      - key: Braintree_Private_Key
+        sync: false
